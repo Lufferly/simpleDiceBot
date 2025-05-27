@@ -29,10 +29,9 @@ async def on_message(message): # What we do when we see a message
     if message.author == diceBot.user:
         return
 
-    if message.content.startswith("!test"):
-        await message.channel.send(bot_Format("Test received!"))
-
-    if message.content.startswith("!roll"):
+    if message.content.startswith("!help"):
+        await help_Command(message)
+    elif message.content.startswith("!roll"):
         await roll_Command(message)
 
 
