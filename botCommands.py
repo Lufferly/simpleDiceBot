@@ -8,6 +8,12 @@ def bot_Format(message_String):
     return "`" + message_String + "`"
 
 
+# Print a help message to the user
+async def help_Command(message):
+    help_String = "[!help]: Displays this help message.\n"
+    help_String += "[!roll ndx]: Rolls n dice, each with x sides counting up from 1.\n"
+    await message.channel.send(bot_Format(help_String))
+
 # What we do when a roll is requested
 #   message is the message object that requested this
 async def roll_Command(message):
