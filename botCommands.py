@@ -2,6 +2,11 @@
 from error import print_Error
 from random import randint
 
+# Dictionary that maps numbers to emojis
+NUM_TO_EMOJI_DICT = {
+    "1": ":one:", "2": ":two:", "3": ":three:", "4": ":four:", "5": ":five:",
+    "6": ":six:", "7": ":seven:", "8": ":eight:", "9": ":nine:", "0": ":zero:"
+}
 
 # Format the message for this bot
 def bot_Format(message_String):
@@ -57,7 +62,12 @@ async def roll_Command(message):
         return
 
     if num_Dice == 1:
-        await message.reply(bot_Format(f"{randint(1, dice_Size)}"))
+        # If we only do one roll we do the output in emojis cause its pretty i guess
+        roll_String = str(randint(1, dice_Size))
+        final_Output = ""
+        for char in roll_String:
+            final_Output += NUM_TO_EMOJI_DICT[char]
+        await message.reply(final_Output)
     else:
         # We are rolling multiple dice
         final_String = ""
