@@ -72,12 +72,18 @@ async def roll_Command(message):
         # We are rolling multiple dice
         final_String = ""
         total = 0  # All of the dice added together
+        messages_sent = 0  # how many messages we have sent so far
         for i in range(num_Dice):
             if len(final_String) > 1950:
                 await message.reply(final_String)
-                final_String = ""
+                messages_sent += 1
+                if messages_sent >= 2:
+                    final_String = "Too many dice rolled! Truncating Output!\n"
+                else:
+                    final_String = ""
             roll = randint(1, dice_Size)
             total += roll
-            final_String += bot_Format(f"{roll}") + " "
+            if not messages_sent >= 2:  # We dont want to make too many replies
+                final_String += bot_Format(f"{roll}") + " "
         final_String += "\n" + bot_Format(f"total:{total}")
         await message.reply(final_String)
