@@ -22,7 +22,7 @@ async def on_ready():
 
 
 @diceBot.event
-async def on_message(message): # What we do when we see a message
+async def on_message(message):  # What we do when we see a message
     print(f"[*] Seen message: {message.content}")
 
     # Check that the message does not come from the bot itself

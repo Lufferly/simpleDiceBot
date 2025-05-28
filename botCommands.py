@@ -63,6 +63,9 @@ async def roll_Command(message):
         final_String = ""
         total = 0  # All of the dice added together
         for i in range(num_Dice):
+            if len(final_String) > 1950:
+                await message.reply(final_String)
+                final_String = ""
             roll = randint(1, dice_Size)
             total += roll
             final_String += bot_Format(f"{roll}") + " "
